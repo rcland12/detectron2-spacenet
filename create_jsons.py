@@ -6,12 +6,13 @@ from osgeo import gdal
 from sklearn.model_selection import train_test_split
 
 # custom functions
-from utils.functions import grab_certain_file
+from utils.functions import grab_certain_file, detectron_json
 
 
 RANDOM_SEED = 560
 
 rio_train = "Spacenet/AOI_1_Rio_Train/RGB-PanSharpen"
+rio_geojson = "Spacenet/AOI_1_Rio_Train/geojson"
 vegas_train = "Spacenet/AOI_2_Vegas_Train/RGB-PanSharpen"
 paris_train = "Spacenet/AOI_3_Paris_Train/RGB-PanSharpen"
 shanghai_train = "Spacenet/AOI_4_Shanghai_Train/RGB-PanSharpen"

@@ -106,4 +106,8 @@ cd ..
 
 cd AOI_5_Khartoum_Test_public
 rm -rf MUL MUL-PanSharpen PAN
-cd ../..
+cd ..
+
+mkdir train val test
+
+cd ..
