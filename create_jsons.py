@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 from utils.functions import grab_certain_file, detectron_json
 
 
-RANDOM_SEED = 560
+RANDOM_SEED = 920
 
 rio_train = "Spacenet/AOI_1_Rio_Train/RGB-PanSharpen"
 rio_geojson = "Spacenet/AOI_1_Rio_Train/geojson"
