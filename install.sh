@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source spacenet_download.sh
+source download.sh
 echo "Done downloading SpaceNet dataset. Now converting TIF images to PNG."
 
 python convert_tif.py
