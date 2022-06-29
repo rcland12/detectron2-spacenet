@@ -97,7 +97,7 @@ def tif_to_png(files, path_to_files, dst, normalize=False):
     
     """
 
-    for item in tqdm(files, desc = "Converting TIF images to PNG", ncols = 150, bar_format="{l_bar}{bar:10}{r_bar}"):
+    for item in tqdm(files, desc = f"Converting TIF images to PNG to {dst}", ncols=150, bar_format="{l_bar}{bar:10}{r_bar}"):
         file_path = os.path.join(path_to_files, item)
         dst_path = os.path.join(dst, item.replace(".tif", ".png"))
         image = gdal.Open(file_path)
@@ -147,7 +147,7 @@ def detectron_json(files, path_to_files, csv, num_dataset, train_val):
     """
     files_dict = {}
 
-    for file in tqdm(files, desc="Creating JSONs for Detectron2", ncols = 150, bar_format="{l_bar}{bar:10}{r_bar}"):
+    for file in tqdm(files, desc=f"Creating JSONs for Detectron2 on {num_dataset}_{train_val}", ncols=150, bar_format="{l_bar}{bar:10}{r_bar}"):
         file_path = os.path.join(path_to_files, file)
 
         # Image ID
@@ -197,5 +197,5 @@ def detectron_json(files, path_to_files, csv, num_dataset, train_val):
 
         files_dict[file.replace(".tif", ".png")] = dictionary
 
-    with open(f"Spacenet/images/{train_val}/AOI_{num_dataset}_region_data.json", "w") as f:
+    with open(f"Spacenet/{train_val}/AOI_{num_dataset}_region_data.json", "w") as f:
         json.dump(files_dict, f)

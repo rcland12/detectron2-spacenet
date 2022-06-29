@@ -2,6 +2,7 @@ import os
 import json
 import geojson
 import pandas as pd
+from tqdm import tqdm
 from osgeo import gdal
 from sklearn.model_selection import train_test_split
 
@@ -10,7 +11,7 @@ from utils.functions import grab_certain_file, detectron_json
 
 
 
-RANDOM_SEED = 920
+RANDOM_SEED = 560
 rio_train = "Spacenet/AOI_1_Rio_Train/RGB-PanSharpen"
 rio_geojson = "Spacenet/AOI_1_Rio_Train/geojson"
 vegas_train = "Spacenet/AOI_2_Vegas_Train/RGB-PanSharpen"
@@ -28,7 +29,7 @@ train, val = train_test_split(rio_images, test_size=0.2, random_state=RANDOM_SEE
 train_dict = {}
 
 # Training set
-for file in train:
+for file in tqdm(train, desc="Creating JSONs for Detectron2 on 1_Rio_train", ncols=150, bar_format="{l_bar}{bar:10}{r_bar}"):
     file_path = os.path.join(rio_train, file)
     img_id = file.split(".tif")[0]
     img_id = img_id.split("img")[1]
@@ -57,7 +58,8 @@ for file in train:
             regions[str(i)] = {"shape_attributes":
                                    {"name": "polygon",
                                     "all_points_x": all_points_x,
-                                    "all_points_y": all_points_y
+                                    "all_points_y": all_points_y,
+                                    "category": 0
                                    },
                                "region_attributes": {}
                               }
@@ -71,15 +73,15 @@ for file in train:
                  }
     
     train_dict[file.replace(".tif", ".png")] = dictionary
-
-with open("Spacenet/train/AOI_1_Rio_region_data.json", "w") as fp:
-    json.dump(train_dict, fp)
+    
+with open("Spacenet/train/AOI_1_Rio_region_data.json", "w") as f:
+    json.dump(train_dict, f)
 
 
 # Validation set
 val_dict = {}
 
-for file in val:
+for file in tqdm(val, desc="Creating JSONs for Detectron2 on 1_Rio_val", ncols=150, bar_format="{l_bar}{bar:10}{r_bar}"):
     file_path = os.path.join(rio_train, file)
     img_id = file.split(".tif")[0]
     img_id = img_id.split("img")[1]
@@ -102,13 +104,14 @@ for file in val:
             
             all_points_x, all_points_y = [], []
             for j in range(len(points)):
-                all_points_x.append((points[j][0] - originX) / pixel_width)
-                all_points_y.append((points[j][1] - originY) / pixel_height)
+                all_points_x.append(int(round((points[j][0] - originX) / pixel_width)))
+                all_points_y.append(int(round((points[j][1] - originY) / pixel_height)))
             
             regions[str(i)] = {"shape_attributes":
                                    {"name": "polygon",
                                     "all_points_x": all_points_x,
-                                    "all_points_y": all_points_y
+                                    "all_points_y": all_points_y,
+                                    "category": 0
                                    },
                                "region_attributes": {}
                               }
@@ -121,10 +124,10 @@ for file in val:
                   "regions": regions
                  }
     
-    train_dict[file.replace(".tif", ".png")] = dictionary
+    val_dict[file.replace(".tif", ".png")] = dictionary
 
-with open("Spacenet/val/AOI_1_Rio_region_data.json", "w") as fp:
-    json.dump(val_dict, fp)
+with open("Spacenet/val/AOI_1_Rio_region_data.json", "w") as f:
+    json.dump(val_dict, f)
 
 
 
@@ -184,8 +187,8 @@ for file in jsons:
     for key, value in loaded.items():
         result[key] = value
 
-with open("Spacenet/train/via_region_data.json", "w") as output_file:
-    json.dump(result, output_file)
+with open("Spacenet/train/via_region_data.json", "w") as file:
+    json.dump(result, file)
 
 
 
@@ -204,5 +207,7 @@ for file in jsons:
     for key, value in loaded.items():
         result[key] = value
 
-with open("Spacenet/val/via_region_data.json", "w") as output_file:
-    json.dump(result, output_file)
+with open("Spacenet/val/via_region_data.json", "w") as file:
+    json.dump(result, file)
+
+print("Done creating JSONs")
