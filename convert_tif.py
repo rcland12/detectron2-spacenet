@@ -8,12 +8,12 @@ from osgeo import gdal
 from sklearn.model_selection import train_test_split
 
 # custom functions
-from utils.functions import grab_certain_file, normalize_tiff, tiff_to_png
+from utils.functions import grab_certain_file, tif_to_png
 
 
 RANDOM_SEED = 560
 
-# Path to all images/geojson
+# Path to all images
 rio_train = "Spacenet/AOI_1_Rio_Train/RGB-PanSharpen"
 rio_test = "Spacenet/AOI_1_Rio_Test_public/RGB-PanSharpen"
 
@@ -37,11 +37,11 @@ rio_images = grab_certain_file(".tif", rio_train)
 train, val = train_test_split(rio_images, test_size=0.2, random_state=RANDOM_SEED)
 test = grab_certain_file(".tif", rio_test)
 
-tiff_to_png(train, rio_train, "Spacenet/train")
+tif_to_png(train, rio_train, "Spacenet/train")
 print("Done converting Rio/train images")
-tiff_to_png(val, rio_train, "Spacenet/val")
+tif_to_png(val, rio_train, "Spacenet/val")
 print("Done converting Rio/val images")
-tiff_to_png(test, rio_test, "Spacenet/test")
+tif_to_png(test, rio_test, "Spacenet/test")
 print("Done converting Rio/test images")
 
 # Vegas
@@ -49,11 +49,11 @@ vegas_images = grab_certain_file(".tif", vegas_train)
 train, val = train_test_split(vegas_images, test_size=0.2, random_state=RANDOM_SEED)
 test = grab_certain_file(".tif", vegas_test)
 
-tiff_to_png(train, vegas_train, "Spacenet/train", normalize=True)
+tif_to_png(train, vegas_train, "Spacenet/train", normalize=True)
 print("Done converting Vegas/train images")
-tiff_to_png(val, vegas_train, "Spacenet/val", normalize=True)
+tif_to_png(val, vegas_train, "Spacenet/val", normalize=True)
 print("Done converting Vegas/val images")
-tiff_to_png(test, vegas_test, "Spacenet/test", normalize=True)
+tif_to_png(test, vegas_test, "Spacenet/test", normalize=True)
 print("Done converting Vegas/test images")
 
 # Paris
@@ -61,11 +61,11 @@ paris_images = grab_certain_file(".tif", paris_train)
 train, val = train_test_split(paris_images, test_size=0.2, random_state=RANDOM_SEED)
 test = grab_certain_file(".tif", paris_test)
 
-tiff_to_png(train, paris_train, "Spacenet/train", normalize=True)
+tif_to_png(train, paris_train, "Spacenet/train", normalize=True)
 print("Done converting Paris/train images")
-tiff_to_png(val, paris_train, "Spacenet/val", normalize=True)
+tif_to_png(val, paris_train, "Spacenet/val", normalize=True)
 print("Done converting Paris/val images")
-tiff_to_png(test, paris_test, "Spacenet/test", normalize=True)
+tif_to_png(test, paris_test, "Spacenet/test", normalize=True)
 print("Done converting Paris/test images")
 
 # Shanghai
@@ -73,11 +73,11 @@ shanghai_images = grab_certain_file(".tif", shanghai_train)
 train, val = train_test_split(shanghai_images, test_size=0.2, random_state=RANDOM_SEED)
 test = grab_certain_file(".tif", shanghai_test)
 
-tiff_to_png(train, shanghai_train, "Spacenet/train", normalize=True)
+tif_to_png(train, shanghai_train, "Spacenet/train", normalize=True)
 print("Done converting Shanghai/train images")
-tiff_to_png(val, shanghai_train, "Spacenet/val", normalize=True)
+tif_to_png(val, shanghai_train, "Spacenet/val", normalize=True)
 print("Done converting Shanghai/val images")
-tiff_to_png(test, shanghai_test, "Spacenet/test", normalize=True)
+tif_to_png(test, shanghai_test, "Spacenet/test", normalize=True)
 print("Done converting Shanghai/test images")
 
 # Khartoum
@@ -85,9 +85,9 @@ khartoum_images = grab_certain_file(".tif", khartoum_train)
 train, val = train_test_split(khartoum_images, test_size=0.2, random_state=RANDOM_SEED)
 test = grab_certain_file(".tif", khartoum_test)
 
-tiff_to_png(train, khartoum_train, "Spacenet/train", normalize=True)
+tif_to_png(train, khartoum_train, "Spacenet/train", normalize=True)
 print("Done converting Khartoum/train images")
-tiff_to_png(val, khartoum_train, "Spacenet/val", normalize=True)
+tif_to_png(val, khartoum_train, "Spacenet/val", normalize=True)
 print("Done converting Khartoum/val images")
-tiff_to_png(test, khartoum_test, "Spacenet/test", normalize=True)
+tif_to_png(test, khartoum_test, "Spacenet/test", normalize=True)
 print("Done converting Khartoum/test images")

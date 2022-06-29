@@ -9,8 +9,8 @@ from sklearn.model_selection import train_test_split
 from utils.functions import grab_certain_file, detectron_json
 
 
-RANDOM_SEED = 920
 
+RANDOM_SEED = 920
 rio_train = "Spacenet/AOI_1_Rio_Train/RGB-PanSharpen"
 rio_geojson = "Spacenet/AOI_1_Rio_Train/geojson"
 vegas_train = "Spacenet/AOI_2_Vegas_Train/RGB-PanSharpen"
@@ -137,6 +137,7 @@ detectron_json(train, vegas_train, df, "2_Vegas", "train")
 detectron_json(val, vegas_train, df, "2_Vegas", "val")
 
 
+
 # Paris
 paris_images = grab_certain_file(".tif", paris_train)
 train, val = train_test_split(paris_images, test_size=0.2, random_state=RANDOM_SEED)
@@ -146,6 +147,7 @@ detectron_json(train, paris_train, df, "3_Paris", "train")
 detectron_json(val, paris_train, df, "3_Paris", "val")
 
 
+
 # Shanghai
 shanghai_images = grab_certain_file(".tif", shanghai_train)
 train, val = train_test_split(shanghai_images, test_size=0.2, random_state=RANDOM_SEED)
@@ -153,6 +155,7 @@ df = pd.read_csv("Spacenet/AOI_4_Shanghai_Train/summaryData/AOI_4_Shanghai_Train
 
 detectron_json(train, shanghai_train, df, "4_Shanghai", "train")
 detectron_json(val, shanghai_train, df, "4_Shanghai", "val")
+
 
 
 # Khartoum
