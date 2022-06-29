@@ -12,6 +12,7 @@ from utils.functions import grab_certain_file, detectron_json
 
 
 RANDOM_SEED = 560
+
 rio_train = "Spacenet/AOI_1_Rio_Train/RGB-PanSharpen"
 rio_geojson = "Spacenet/AOI_1_Rio_Train/geojson"
 vegas_train = "Spacenet/AOI_2_Vegas_Train/RGB-PanSharpen"

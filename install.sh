@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source download.sh
-echo "Done downloading SpaceNet dataset. Now converting TIF images to PNG."
+# source download.sh
+# echo "Done downloading SpaceNet dataset. Now converting TIF images to PNG."
 
 python convert_tif.py
 echo "Done converting TIF images to PNG. Now creating JSON files for Detectron2"

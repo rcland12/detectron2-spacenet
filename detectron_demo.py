@@ -31,7 +31,6 @@ def get_dataset_dicts(img_dir):
         record = {}
         
         filename = os.path.join(img_dir, annots["filename"])
-        print(filename)
         height, width = cv.imread(filename).shape[:2]
         
         record["file_name"] = filename
