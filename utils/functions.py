@@ -147,7 +147,7 @@ def detectron_json(files, path_to_files, csv, num_dataset, train_val):
     """
     files_dict = {}
 
-    for file in tqdm(files, desc=f"Creating JSONs for Detectron2 on {num_dataset}_{train_val}", ncols=150, bar_format="{l_bar}{bar:10}{r_bar}"):
+    for file in tqdm(files, desc=f"Creating JSONs for Detectron2 on {num_dataset}_{train_val}", ncols=150, bar_format="{l_bar}{bar:10}{r_bar}", position=0, leave=True):
         file_path = os.path.join(path_to_files, file)
 
         # Image ID
