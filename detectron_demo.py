@@ -74,23 +74,15 @@ metadata = MetadataCatalog.get("train")
 
 
 # Create configurations
-# Initialize configs
 cfg = get_cfg()
-# Load in pre-built model from Detectron2.MODEL_ZOO
-cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml"))
 cfg.DATASETS.TRAIN = ("train",)
-cfg.DATALOADER.NUM_WORKERS = 4
-# Start with pre-trained model, usually performs better
+cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml"))
 cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml")
-# Images per batch
-cfg.SOLVER.IMS_PER_BATCH = 4
-# Starting learning rate
 cfg.SOLVER.BASE_LR = 0.0005
-# Batch size per image
+cfg.DATALOADER.NUM_WORKERS = 4
+cfg.SOLVER.IMS_PER_BATCH = 4
 cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = 16
-# Define number of classes (1 for "building")
 cfg.MODEL.ROI_HEADS.NUM_CLASSES = len(classes)
-# Where your results are stored
 cfg.OUTPUT_DIR = "Spacenet/output"
 
 # Save your configurations for multi-GPU use

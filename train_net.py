@@ -168,7 +168,7 @@ def main(args):
     classes = ["building"]
     
     for d in ["train", "val"]:
-        DatasetCatalog.register(d, lambda d=d: get_dataset_dicts(os.path.join("Spacenet/images", d)))
+        DatasetCatalog.register(d, lambda d=d: get_dataset_dicts(os.path.join("Spacenet", d)))
         MetadataCatalog.get(d).thing_classes = classes
     
     cfg = setup(args)
