@@ -81,7 +81,6 @@ def get_dataset_dicts(img_dir):
     return dataset_dicts
 
 
-
 def build_evaluator(cfg, dataset_name, output_folder=None):
     """
     Create evaluator(s) for a given dataset.
