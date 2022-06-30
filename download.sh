@@ -114,6 +114,6 @@ echo "Done downloading and organzing Khartoum dataset (5 of 5)"
 
 
 
-mkdir train val test
+mkdir train val test predictions
 
 cd ..
