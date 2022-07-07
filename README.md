@@ -14,11 +14,11 @@ Start here.<br>
     with a file structure like:
     ```bash
     Spacenet/
-    ├─ AOI_1_Rio_train
+    ├─ AOI_1_Rio_train/
     ...
     ...
     ...
-    ├─AOI_5_Khartoum_Test_public
+    ├─ AOI_5_Khartoum_Test_public/
     ├─ train/
     │  ├─ images.png
     │  ├─ via_region_data.json
