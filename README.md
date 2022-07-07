@@ -28,4 +28,4 @@ Start here.<br>
     ├─ test/
     │  ├─ images.png
     ```
-3. Follow the steps in the medium article on how to properly use the inference functions in demo.py: https://russland.medium.com/94338f739cd0
+3. Follow the steps in the medium article on how to properly use the inference functions in demo.py:
