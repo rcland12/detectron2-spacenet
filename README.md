@@ -28,3 +28,4 @@ Start here.<br>
     ├─ test/
     │  ├─ images.png
     ```
+3. Follow the steps in the medium article on how to properly use the inference functions in demo.py:
