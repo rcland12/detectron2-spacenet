@@ -70,14 +70,13 @@ for d in ["train", "val"]:
     DatasetCatalog.register(d, lambda d=d: get_dataset_dicts(os.path.join("Spacenet", d)))
     MetadataCatalog.get(d).thing_classes = classes
     MetadataCatalog.get(d).thing_colors = colors
-metadata = MetadataCatalog.get("train")
 
 
 # Create configurations
 cfg = get_cfg()
+cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml"))
 cfg.DATASETS.TRAIN = ("train",)
 cfg.DATASETS.TEST = ("val",)
-cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml"))
 cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml")
 cfg.SOLVER.BASE_LR = 0.0005
 cfg.DATALOADER.NUM_WORKERS = 4
@@ -96,7 +95,6 @@ os.makedirs(cfg.OUTPUT_DIR, exist_ok=True)
 trainer = DefaultTrainer(cfg)
 trainer.resume_or_load(resume=False)
 trainer.train()
-
 
 
 # Inference configurations
