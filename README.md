@@ -9,7 +9,7 @@ Start here.<br>
     ```
 2. Run the following command. This command will download the data, put it into directories, rename it, convert the TIFF images to PNGs, and create the JSON files for Detectron2. This will take an hour or two. You may see warnings, they are expected.
     ```bash
-    source install.sh
+    ./install.sh
     ```
     with a file structure like:
     ```bash
